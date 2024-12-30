@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import axios from 'axios';
-import { randomSentences } from '@/data';
+import { randomSentences } from '@/data/randomSentences';
 
-export default function ImageGenerator(): JSX.Element {
+export default function ImageGenerator() {
   const [sentence, setSentence] = useState<string>('');
   const [keywords, setKeywords] = useState<string[]>([]);
   const [imageUrl, setImageUrl] = useState<string>('');
