@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import GoogleInfo from './GoogleInfo';
 import CustomLink from '../shared/CustomLink';
 
