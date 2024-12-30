@@ -1,3 +1,9 @@
-export default function Home() {
-  return <div>dd</div>;
+import GoogleSignIn from '@/components/auth/GoogleSignIn';
+
+export default async function Home() {
+  return (
+    <div>
+      <GoogleSignIn />
+    </div>
+  );
 }

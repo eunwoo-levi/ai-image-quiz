@@ -1,20 +1,20 @@
 import Link from 'next/link';
+import GoogleInfo from './GoogleInfo';
+import CustomLink from '../shared/CustomLink';
 
 export default function Navbar() {
   return (
-    <div className='flex h-[80px] items-center justify-evenly shadow-xl'>
-      <div className='border-2 border-red-500'>
-        <h1 className='text-start text-3xl'>EduPrompt</h1>
-      </div>
+    <div className='flex h-[80px] w-full items-center justify-between px-8 shadow-xl'>
       <div>
-        <Link
-          className='text-xl font-semibold duration-200 hover:scale-110'
-          href='/quiz'
-        >
-          퀴즈
-        </Link>
+        <h1 className='text-start text-3xl font-bold'>EduPrompt</h1>
       </div>
-      <div>닉네임</div>
+      <section className='flex items-center gap-8'>
+        <CustomLink path='/' title='Home' />
+        <CustomLink path='/quiz' title='Quiz' />
+      </section>
+      <div>
+        <GoogleInfo />
+      </div>
     </div>
   );
 }
