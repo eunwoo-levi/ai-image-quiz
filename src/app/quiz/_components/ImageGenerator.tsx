@@ -32,7 +32,7 @@ export default function ImageGenerator() {
 
       // Generate image based on the selected sentence
       const imageResponse = await axios.post<{ imageUrl: string }>(
-        '/api/dall-e',
+        '/api/quiz',
         { prompt: selectedSentence },
       );
 
