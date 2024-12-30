@@ -1,7 +1,13 @@
-import Link from 'next/link';
+import { auth } from '@/auth';
 import ImageGenerator from './_components/ImageGenerator';
+import { redirect } from 'next/navigation';
 
-export default function AIImagePage() {
+export default async function AIImagePage() {
+  const session = await auth();
+  if (!session) {
+    redirect('/login');
+  }
+
   return (
     <div className='min-h-screen bg-gray-50'>
       <div className='mx-auto max-w-4xl px-4 py-8'>
