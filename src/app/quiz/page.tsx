@@ -1,6 +1,7 @@
 import { auth } from '@/auth';
 import ImageGenerator from './_components/ImageGenerator';
 import { redirect } from 'next/navigation';
+import InputImageGenerator from './_components/InputImageGenerator';
 
 export default async function AIImagePage() {
   const session = await auth();
@@ -21,6 +22,7 @@ export default async function AIImagePage() {
           </p>
 
           <ImageGenerator />
+          <InputImageGenerator />
         </div>
       </div>
     </div>
