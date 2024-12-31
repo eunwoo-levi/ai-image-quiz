@@ -8,7 +8,7 @@ interface KeywordsState {
   resetKeywords: () => void;
 }
 
-const useKeywordsStore = create<KeywordsState>((set) => ({
+export const useKeywordsStore = create<KeywordsState>((set) => ({
   keywords1: [],
   keywords2: [],
   setKeywords1: (keywords1) => set({ keywords1 }),

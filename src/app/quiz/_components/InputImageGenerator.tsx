@@ -2,12 +2,17 @@
 
 import { useState } from 'react';
 import axios from 'axios';
+import { useKeywordsStore } from '@/store/useKeywordsStore';
+import ImageDisplay from './ImageDisplay';
+import ErrorMessage from './ErrorMessage';
 
 export default function InputImageGenerator() {
   const [prompt, setPrompt] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+
+  const { setKeywords2 } = useKeywordsStore();
 
   const generateImage = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
@@ -21,6 +26,12 @@ export default function InputImageGenerator() {
     setError(null);
 
     try {
+      const keywordsResponse = await axios.post('/api/extractKeywords', {
+        sentence: prompt,
+      });
+
+      setKeywords2(keywordsResponse.data.keywords || []);
+
       const response = await axios.post<{ imageUrl: string }>(
         '/api/quiz',
         { prompt },
@@ -108,21 +119,8 @@ export default function InputImageGenerator() {
         </button>
       </form>
 
-      {error && (
-        <div className='mt-4 rounded-md bg-red-50 p-3 text-red-600'>
-          {error}
-        </div>
-      )}
-
-      {imageUrl && (
-        <div className='mt-8'>
-          <img
-            src={imageUrl}
-            alt='Generated'
-            className='w-full rounded-lg shadow-lg'
-          />
-        </div>
-      )}
+      <ErrorMessage error={error} />
+      <ImageDisplay imageUrl={imageUrl} />
     </div>
   );
 }

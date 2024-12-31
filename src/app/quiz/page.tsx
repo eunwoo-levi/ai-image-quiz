@@ -2,6 +2,7 @@ import { auth } from '@/auth';
 import ImageGenerator from './_components/ImageGenerator';
 import { redirect } from 'next/navigation';
 import InputImageGenerator from './_components/InputImageGenerator';
+import ResultFromComparision from './_components/ResultFromComparision';
 
 export default async function AIImagePage() {
   const session = await auth();
@@ -24,6 +25,7 @@ export default async function AIImagePage() {
           <ImageGenerator />
           <InputImageGenerator />
         </div>
+        <ResultFromComparision />
       </div>
     </div>
   );

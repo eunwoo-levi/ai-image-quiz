@@ -1,6 +1,6 @@
 interface LoadingButtonProps {
   loading: boolean;
-  onClick: () => void;
+  onClick: (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 export default function LoadingButton({
@@ -42,7 +42,7 @@ export default function LoadingButton({
           작업 중...
         </span>
       ) : (
-        '랜덤 문장으로 이미지 생성'
+        '검사 결과'
       )}
     </button>
   );

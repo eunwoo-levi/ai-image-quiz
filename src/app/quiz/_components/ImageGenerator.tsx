@@ -3,11 +3,12 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { randomSentences } from '@/data/randomSentences';
-import LoadingButton from './LoaddingButton';
+import LoadingButton from './LoadingButton';
 import ErrorMessage from './ErrorMessage';
 import KeywordList from './KeywordList';
 import ImageDisplay from './ImageDisplay';
 import SentenceDisplay from './SentenceDisplay';
+import { useKeywordsStore } from '@/store/useKeywordsStore';
 
 export default function ImageGenerator() {
   const [sentence, setSentence] = useState('');
@@ -15,6 +16,8 @@ export default function ImageGenerator() {
   const [imageUrl, setImageUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const { setKeywords1 } = useKeywordsStore();
 
   const handleGenerateSentence = async () => {
     const randomIndex = Math.floor(Math.random() * randomSentences.length);
@@ -28,7 +31,7 @@ export default function ImageGenerator() {
       const keywordsResponse = await axios.post('/api/extractKeywords', {
         sentence: selectedSentence,
       });
-      setKeywords(keywordsResponse.data.keywords || []);
+      setKeywords1(keywordsResponse.data.keywords || []);
 
       const imageResponse = await axios.post('/api/quiz', {
         prompt: selectedSentence,

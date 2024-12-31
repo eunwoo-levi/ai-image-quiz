@@ -18,20 +18,21 @@ export async function POST(request: Request) {
 
   try {
     const prompt = `
-  Compare the following two keyword arrays and determine their similarity:
-  
-  Array 1: [${array1.join(', ')}]
-  Array 2: [${array2.join(', ')}]
-  
-  1. Provide the similarity as a percentage (out of 100%).
-  2. Explain the result statistically, including the number of matching keywords, total keywords, and any relevant observations.
-  
-  Return the similarity percentage and the explanation in a structured JSON format as follows:
-  {
-    "similarity": "percentage_value",
-    "explanation": "detailed_reason"
-  }
-  `;
+    Compare the following two keyword arrays and determine their similarity:
+    
+    Array 1: [${array1.join(', ')}]
+    Array 2: [${array2.join(', ')}]
+    
+    1. Provide the similarity as a percentage (rounded to the nearest whole number).
+    2. Explain the result statistically, including the number of matching keywords, total keywords, and any relevant observations.
+    3. Translate the explanation into Korean at the end.
+    
+    Return the similarity percentage and the explanation in a structured JSON format as follows:
+    {
+      "similarity": "percentage_value",
+      "explanation": "detailed_reason_in_korean"
+    }
+    `;
 
     const response = await openai.chat.completions.create({
       model: 'gpt-4',
